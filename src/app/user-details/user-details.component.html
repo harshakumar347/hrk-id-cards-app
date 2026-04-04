@@ -1,0 +1,26 @@
+<h2>User Details</h2>
+
+<div *ngIf="user">
+
+<p><b>Username:</b> {{user.username}}</p>
+<p><b>Date of Birth:</b> {{user.dob}}</p>
+
+</div>
+
+<hr>
+
+<h3>User Files</h3>
+
+<ul *ngIf="files.length > 0">
+<li *ngFor="let file of files">
+
+<a [href]="file.url" target="_blank">
+{{file.name}}
+</a>
+
+</li>
+</ul>
+
+<p *ngIf="files.length == 0">
+No files uploaded
+</p>

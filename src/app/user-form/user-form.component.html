@@ -1,0 +1,21 @@
+
+<form (ngSubmit)="submitForm()">
+
+<label>Username</label>
+<input type="text" [(ngModel)]="username" name="username" required>
+
+<br><br>
+
+<label>Date of Birth</label>
+<input type="date" [(ngModel)]="dob" name="dob" required>
+
+<br><br>
+
+<label>Upload Files</label>
+<input type="file" multiple (change)="onFileSelected($event)">
+
+<br><br>
+
+<button type="submit">Submit</button>
+
+</form>
