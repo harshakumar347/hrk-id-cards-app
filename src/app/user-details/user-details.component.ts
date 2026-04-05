@@ -28,7 +28,7 @@ console.log('Phone number from route in user details:', phonenumber);
 this.userService.getUser(phonenumber!)
 .subscribe({ next: (res: any) => {
     console.log('User data received:', res);
-    this.user = res;
+    this.user = res.data; // Assuming the user data is in res.data
   }}
  
 );
