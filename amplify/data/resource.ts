@@ -10,12 +10,8 @@ const schema = a.schema({
   Todo: a
     .model({
       content: a.string(),
-    })
-    .authorization((allow) => [allow.publicApiKey()]),
-});
-
-const userschema = a.schema({
-  User: a
+    }),
+    User: a
     .model({
       username: a.string(),
       dob: a.date(),
@@ -24,11 +20,22 @@ const userschema = a.schema({
     .authorization((allow) => [allow.publicApiKey()]),
 });
 
+/*const userschema = a.schema({
+  User: a
+    .model({
+      username: a.string(),
+      dob: a.date(),
+      files: a.string().array(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+});*/
+
 export type Schema = ClientSchema<typeof schema>;
-export type UserSchema = ClientSchema<typeof userschema>;
+//export type UserSchema = ClientSchema<typeof userschema>;
 
 export const data = defineData({
   schema,
+  
   authorizationModes: {
     defaultAuthorizationMode: 'apiKey',
     // API Key is used for a.allow.public() rules

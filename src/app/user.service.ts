@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { generateClient } from 'aws-amplify/data';
 
-import { UserSchema } from '../../amplify/data/resource';
+import { Schema } from '../../amplify/data/resource';
 import { from, Observable } from 'rxjs';
 
-const client = generateClient<UserSchema>();
+const client = generateClient<Schema>();
 
 @Injectable({
   providedIn: 'root'
