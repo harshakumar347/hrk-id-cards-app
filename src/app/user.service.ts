@@ -1,18 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { generateClient } from 'aws-amplify/data';
+
+import { UserSchema } from '../../amplify/data/resource';
+import { from, Observable } from 'rxjs';
+
+const client = generateClient<UserSchema>();
 
 @Injectable({
   providedIn: 'root'
  
 })
 export class UserService {
-apiUrl = "https://your-api-id.execute-api.region.amazonaws.com/dev/users";
+
 
 constructor(private http: HttpClient) {}
 
-getUser(username: string){
+   getUser(username: string){
+   
   console.log(`Fetching user with username: ${username}`);
-return this.http.get<any>(`${this.apiUrl}/${username}`);
+return from(client.models.User.get({id: username }));
 }
 
 }

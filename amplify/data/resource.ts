@@ -14,7 +14,18 @@ const schema = a.schema({
     .authorization((allow) => [allow.publicApiKey()]),
 });
 
+const userschema = a.schema({
+  User: a
+    .model({
+      username: a.string(),
+      dob: a.date(),
+      files: a.string().array(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+});
+
 export type Schema = ClientSchema<typeof schema>;
+export type UserSchema = ClientSchema<typeof userschema>;
 
 export const data = defineData({
   schema,

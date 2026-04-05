@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { uploadData } from 'aws-amplify/storage';
 import { FormsModule } from '@angular/forms'; 
+import { generateClient } from 'aws-amplify/data';
+import { UserSchema } from '../../../amplify/data/resource';
+
+const client = generateClient<UserSchema>();
 
 @Component({
   selector: 'app-user-form',
@@ -26,6 +30,13 @@ export class UserFormComponent implements OnInit {
     if (!this.username) {
       alert("Username required");
       return;
+    }else{
+     const { errors, data: user } = await client.models.User.create({
+        id: this.username,
+        username: this.username,
+        dob: this.dob,
+        files: this.files.map(file => file.name)
+});
     }
 
     for (let file of this.files) {
