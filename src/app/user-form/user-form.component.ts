@@ -16,7 +16,7 @@ const client = generateClient<Schema>();
 })
 export class UserFormComponent implements OnInit {
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+   
   }
     username: string = '';
     dob: string = '';
@@ -32,14 +32,13 @@ export class UserFormComponent implements OnInit {
       alert("Username required");
       return;
     }else{
-       const result = await client.models.User.create({
-      
+      const { data: user , errors } = await client.models.User.create({
         username: this.username,
         dob: this.dob,
         files: this.files.map(file => file.name)
 });
 
-   const user = result.data;
+      const realuser = user?.username
 
     }
 
