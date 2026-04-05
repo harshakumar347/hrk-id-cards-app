@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { generateClient } from 'aws-amplify/data';
 import { Schema } from '../../../amplify/data/resource';
 import { userGuard } from '../user.guard';
-import { UserService } from '../user.service';
+//import { UserService } from '../user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 const client = generateClient<Schema>();
@@ -19,9 +19,7 @@ const client = generateClient<Schema>();
 export class UserFormComponent implements OnInit {
 
   constructor(
-  private route:ActivatedRoute,
-  private userService:UserService
-  ){}
+  private route:ActivatedRoute){}
   
   router = inject(Router);
   ngOnInit(): void {
@@ -85,7 +83,8 @@ export class UserFormComponent implements OnInit {
      
     }
 
-     this.router.navigate(['/user',this.phonenumber]);
+     console.log("navigating to user details with phone number:", this.phonenumber);
+     this.router.navigateByUrl(`/user/${this.phonenumber}`);
     
   }
 
