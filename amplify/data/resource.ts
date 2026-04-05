@@ -14,10 +14,11 @@ const schema = a.schema({
     }).authorization((allow) => [allow.publicApiKey()]),
   User: a
     .model({
+      phonenumber: a.id().required(),
       username: a.string(),
       dob: a.date(),
       files: a.string().array(),
-    })
+    }).identifier(["phonenumber"])
     .authorization((allow) => [allow.publicApiKey()]),
 });
 
@@ -47,7 +48,12 @@ export const data = defineData({
 });
 
 export const storage = defineStorage({
-  name: 'users'
+  name: 'users',
+  access: (allow) => ({
+    'userfiles/{phonenumber}/*': [
+      allow.guest.to(['read', 'write', 'delete']),
+      allow.entity('identity').to(['read', 'write', 'delete'])
+    ]}),
 });
 
 /*== STEP 2 ===============================================================

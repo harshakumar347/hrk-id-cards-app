@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { generateClient } from 'aws-amplify/data';
 import { Schema } from '../../../amplify/data/resource';
 import { userGuard } from '../user.guard';
+import { UserService } from '../user.service';
+import { ActivatedRoute } from '@angular/router';
 
 const client = generateClient<Schema>();
 
@@ -15,9 +17,18 @@ const client = generateClient<Schema>();
   styleUrl: './user-form.component.css'
 })
 export class UserFormComponent implements OnInit {
+
+  constructor(
+  private route:ActivatedRoute,
+  private userService:UserService
+  ){}
+  
+ 
   ngOnInit(): void {
    
   }
+
+    phonenumber = this.route.snapshot.paramMap.get('phonenumber');
     username: string = '';
     dob: string = '';
     files: File[] = [];
@@ -28,11 +39,15 @@ export class UserFormComponent implements OnInit {
 
   async submitForm() {
 
-    if (!this.username) {
+    if (!this.phonenumber) {
+      alert("Phone number required");
+      return;
+    }else if(!this.username){
       alert("Username required");
       return;
     }else{
       const { data: user , errors } = await client.models.User.create({
+        phonenumber: this.phonenumber,
         username: this.username,
         dob: this.dob,
         files: this.files.map(file => file.name)
@@ -45,9 +60,10 @@ export class UserFormComponent implements OnInit {
 
     for (let file of this.files) {
 
-      const path = `${this.username}/${file.name}`;
+      const path = `userfiles/${this.phonenumber}/${file.name}`;
 
        const  filesuploaded:UploadDataWithPathOutput =    await uploadData({
+        
         path: path,
         data: file,
         options: {

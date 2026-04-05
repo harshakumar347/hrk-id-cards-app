@@ -8,13 +8,13 @@ export const routes: Routes = [
 
 
     {
-path: 'user/:username',
+path: 'user/:phonenuber',
 canActivate: [userGuard],
 component: UserDetailsComponent
 },
 
 {
-path: 'register/:username',
+path: 'register/:phonenuber',
 component: UserFormComponent
 }
 

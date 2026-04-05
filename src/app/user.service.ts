@@ -16,10 +16,10 @@ export class UserService {
 
 constructor(private http: HttpClient) {}
 
-   getUser(username: string){
+   getUser(usernm: string){
    
-  console.log(`Fetching user with username: ${username}`);
-return from(client.models.User.get({id: username }));
+  console.log(`Fetching user with phone number: ${usernm}`);
+return from(client.models.User.get({phonenumber: usernm }));
 }
 
 }

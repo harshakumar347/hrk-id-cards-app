@@ -7,10 +7,10 @@ import { of } from 'rxjs';
 export const userGuard: CanActivateFn = (route, state) => {
   const userService = inject(UserService);
    const router = inject(Router);
-  const username = route.params['username'];
+  const phonenumber = route.params['phonenumber'];
   
 
-return userService.getUser(username).pipe(
+return userService.getUser(phonenumber).pipe(
 
 map(user => {
 
@@ -20,7 +20,7 @@ return true;   // show UserDetailsComponent
 
 }else{
 
-router.navigate(['/register',username]);
+router.navigate(['/register',phonenumber]);
 return false;
 
 }
@@ -29,7 +29,7 @@ return false;
 
 catchError(() => {
 
-router.navigate(['/register',username]);
+router.navigate(['/register',phonenumber]);
 return of(false);
 
 })
