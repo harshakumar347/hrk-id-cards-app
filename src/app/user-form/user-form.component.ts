@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { uploadData, UploadDataWithPathOutput } from 'aws-amplify/storage';
 import { FormsModule } from '@angular/forms'; 
 import { generateClient } from 'aws-amplify/data';
 import { Schema } from '../../../amplify/data/resource';
 import { userGuard } from '../user.guard';
 import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const client = generateClient<Schema>();
 
@@ -23,7 +23,7 @@ export class UserFormComponent implements OnInit {
   private userService:UserService
   ){}
   
- 
+  router = inject(Router);
   ngOnInit(): void {
    
   }
@@ -69,6 +69,7 @@ export class UserFormComponent implements OnInit {
         data: file,
         options: {
                 bucket: 'users'
+                
                  }
         
       });
@@ -76,6 +77,8 @@ export class UserFormComponent implements OnInit {
      
       filesuploaded.result.then(() => {
         alert(`File ${file.name} uploaded successfully`);
+        this.router.navigate(['/user',this.phonenumber]);
+       // return of(false);
       }).catch((error) => {        alert(`Error uploading file ${file.name}: ${error.message}`);
       });
      
