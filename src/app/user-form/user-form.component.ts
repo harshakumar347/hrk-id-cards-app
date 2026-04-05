@@ -84,7 +84,9 @@ export class UserFormComponent implements OnInit {
     }
 
      console.log("navigating to user details with phone number:", this.phonenumber);
-     this.router.navigateByUrl(`/user/${this.phonenumber}`);
+     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([this.router.url]);
+  });
     
   }
 
