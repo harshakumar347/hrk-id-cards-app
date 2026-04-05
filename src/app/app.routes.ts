@@ -3,18 +3,19 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { userGuard } from './user.guard';
 import { TodosComponent } from './todos/todos.component';
+import { forwardtoregisterGuard } from './forwardtoregister.guard';
 
 export const routes: Routes = [
 
 
     {
 path: 'user/:phonenumber',
-canActivate: [userGuard],
+canMatch: [forwardtoregisterGuard],
 component: UserDetailsComponent
 },
 
 {
-path: 'register/:phonenumber',
+path: 'user/:phonenumber',
 component: UserFormComponent
 }
 

@@ -1,26 +1,37 @@
 <h2>User Details</h2>
 
-<div *ngIf="user">
+@if(user){
+    <div>
+    <p><b>Username:</b> {{user.username}}</p>
+   <p><b>Date of Birth:</b> {{user.dob}}</p>
 
-<p><b>Username:</b> {{user.username}}</p>
-<p><b>Date of Birth:</b> {{user.dob}}</p>
+ </div> 
+}
 
-</div>
+
 
 <hr>
 
 <h3>User Files</h3>
 
-<ul *ngIf="files.length > 0">
-<li *ngFor="let file of files">
+@if(files.length > 0){
+    <ul>
+    @for(file of files;track file.name){
+        <li>
+        <div>
+            <a [href]="file.url" target="_blank">
+                {{file.name}}
+            </a>
+        </div>
+        </li>
+    }
+        </ul>
+}
 
-<a [href]="file.url" target="_blank">
-{{file.name}}
-</a>
 
-</li>
-</ul>
-
-<p *ngIf="files.length == 0">
+@if(files.length == 0){
+<p >
 No files uploaded
 </p>
+}
+

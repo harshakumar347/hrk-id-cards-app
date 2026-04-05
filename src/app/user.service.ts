@@ -14,7 +14,7 @@ const client = generateClient<Schema>();
 export class UserService {
 
 
-constructor(private http: HttpClient) {}
+constructor() {}
 
    getUser(usernm: string){
    

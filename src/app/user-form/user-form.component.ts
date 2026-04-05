@@ -78,7 +78,7 @@ export class UserFormComponent implements OnInit {
       filesuploaded.result.then(() => {
         alert(`File ${file.name} uploaded successfully`);
         this.router.navigate(['/user',this.phonenumber]);
-       // return of(false);
+      
       }).catch((error) => {        alert(`Error uploading file ${file.name}: ${error.message}`);
       });
      

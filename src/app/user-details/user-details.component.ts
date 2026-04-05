@@ -23,21 +23,21 @@ private userService:UserService
 
 async ngOnInit(){
 
-const username = this.route.snapshot.paramMap.get('username');
+const phonenumber = this.route.snapshot.paramMap.get('phonenumber');
 
-this.userService.getUser(username!)
+this.userService.getUser(phonenumber!)
 .subscribe((res: any)=>{
 this.user = res;
 });
 
-await this.loadFiles(username!);
+await this.loadFiles(phonenumber!);
 
 }
 
-async loadFiles(username:string){
+async loadFiles(phonenumber:string){
 
 const result = await list({
-path: `users/${username}/`
+path: `users/${phonenumber}/`
 });
 
 for(const item of result.items){
