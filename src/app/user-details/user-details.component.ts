@@ -24,12 +24,16 @@ private userService:UserService
 async ngOnInit(){
 
 const phonenumber = this.route.snapshot.paramMap.get('phonenumber');
-
+console.log('Phone number from route in user details:', phonenumber);
 this.userService.getUser(phonenumber!)
-.subscribe((res: any)=>{
-this.user = res;
-});
+.subscribe({ next: (res: any) => {
+    console.log('User data received:', res);
+    this.user = res;
+  }}
+ 
+);
 
+console.log(this.user);
 await this.loadFiles(phonenumber!);
 
 }
