@@ -29,6 +29,7 @@ export class UserFormComponent implements OnInit {
   }
 
     phonenumber = this.route.snapshot.paramMap.get('phonenumber');
+    
     username: string = '';
     dob: string = '';
     files: File[] = [];
@@ -60,7 +61,7 @@ export class UserFormComponent implements OnInit {
 
     for (let file of this.files) {
 
-      const path = `userfiles/${this.phonenumber}/${file.name}`;
+      const path = `users/${this.phonenumber}/${file.name}`;
 
        const  filesuploaded:UploadDataWithPathOutput =    await uploadData({
         
