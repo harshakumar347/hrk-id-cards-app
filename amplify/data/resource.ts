@@ -1,4 +1,5 @@
-import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
+import { type ClientSchema, a, defineData,defineStorage } from '@aws-amplify/backend';
+
 
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try
@@ -43,6 +44,10 @@ export const data = defineData({
       expiresInDays: 30,
     },
   },
+});
+
+export const storage = defineStorage({
+  name: 'users'
 });
 
 /*== STEP 2 ===============================================================

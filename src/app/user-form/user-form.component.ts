@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { uploadData } from 'aws-amplify/storage';
+import { uploadData, UploadDataWithPathOutput } from 'aws-amplify/storage';
 import { FormsModule } from '@angular/forms'; 
 import { generateClient } from 'aws-amplify/data';
 import { Schema } from '../../../amplify/data/resource';
@@ -38,6 +38,7 @@ export class UserFormComponent implements OnInit {
         files: this.files.map(file => file.name)
 });
 
+      errors?alert(`Error creating user: ${errors[0].message}`):alert
       const realuser = user?.username
 
     }
@@ -46,14 +47,21 @@ export class UserFormComponent implements OnInit {
 
       const path = `users/${this.username}/${file.name}`;
 
-      await uploadData({
+       const  filesuploaded:UploadDataWithPathOutput =    await uploadData({
         path: path,
         data: file
+        
       });
 
+     
+      filesuploaded.result.then(() => {
+        alert(`File ${file.name} uploaded successfully`);
+      }).catch((error) => {        alert(`Error uploading file ${file.name}: ${error.message}`);
+      });
+     
+     
     }
-
-    alert("Files uploaded successfully");
+    
   }
 
 }
