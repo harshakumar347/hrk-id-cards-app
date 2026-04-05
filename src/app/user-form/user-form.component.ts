@@ -45,11 +45,14 @@ export class UserFormComponent implements OnInit {
 
     for (let file of this.files) {
 
-      const path = `users/${this.username}/${file.name}`;
+      const path = `${this.username}/${file.name}`;
 
        const  filesuploaded:UploadDataWithPathOutput =    await uploadData({
         path: path,
-        data: file
+        data: file,
+        options: {
+                bucket: 'users'
+                 }
         
       });
 
