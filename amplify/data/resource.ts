@@ -1,4 +1,4 @@
-import { type ClientSchema, a, defineData,defineStorage } from '@aws-amplify/backend';
+import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
 
 /*== STEP 1 ===============================================================
@@ -47,14 +47,7 @@ export const data = defineData({
   },
 });
 
-export const storage = defineStorage({
-  name: 'users',
-  access: (allow) => ({
-    'userfiles/{phonenumber}/*': [
-      allow.guest.to(['read', 'write', 'delete']),
-      allow.entity('identity').to(['read', 'write', 'delete'])
-    ]}),
-});
+
 
 /*== STEP 2 ===============================================================
 Go to your frontend source code. From your client-side code, generate a
