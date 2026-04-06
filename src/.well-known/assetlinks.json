@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.hrk.hikeboards",
+    "sha256_cert_fingerprints":
+    ["2D:0B:E6:0E:B9:11:77:D8:02:EE:4A:44:D2:76:55:2A:D3:E1:13:52:E3:BA:5E:0E:28:62:A9:2F:CE:37:EE:0D"]
+  }
+}]
